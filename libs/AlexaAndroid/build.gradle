@@ -30,12 +30,17 @@ dependencies {
     compile 'com.google.code.gson:gson:2.4'
     compile group: 'commons-io', name: 'commons-io', version: '2.5'
     compile 'com.squareup.okhttp3:okhttp:3.3.1'
+    compile 'com.madgag.spongycastle:core:1.54.0.0'
+    compile 'com.madgag.spongycastle:prov:1.54.0.0'
+    compile 'com.madgag.spongycastle:pkix:1.54.0.0'
+    compile 'com.madgag.spongycastle:pg:1.54.0.0'
+    compile 'com.google.android.gms:play-services:9.4.+'
     testCompile 'junit:junit:4.12'
 }
 
 android {
-    compileSdkVersion 22
-    buildToolsVersion "22.0.1"
+    compileSdkVersion 24
+    buildToolsVersion "24.0.1"
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 22

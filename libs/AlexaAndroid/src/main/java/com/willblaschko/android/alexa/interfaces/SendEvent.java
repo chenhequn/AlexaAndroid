@@ -16,7 +16,6 @@ import java.util.regex.Pattern;
 import okhttp3.Headers;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
-import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
@@ -35,7 +34,6 @@ public abstract class SendEvent {
     protected AsyncCallback<Void, Exception> mCallback;
 
     //OkHttpClient for transfer of data
-    OkHttpClient mClient = ClientUtil.getTLS12OkHttpClient();
     Request.Builder mRequestBuilder = new Request.Builder();
     MultipartBody.Builder mBodyBuilder;
 
@@ -82,7 +80,13 @@ public abstract class SendEvent {
 
     private AvsResponse parseResponse() throws IOException, AvsException, RuntimeException{
         Request request = mRequestBuilder.build();
-        Response response = mClient.newCall(request).execute();
+        Response response = null;
+        try {
+            response = ClientUtil.getTLS12OkHttpClient().newCall(request).execute();
+        }catch (IOException e){
+            e.printStackTrace();
+            throw e;
+        }
 
         Headers headers = response.headers();
         String header = headers.get("content-type");
