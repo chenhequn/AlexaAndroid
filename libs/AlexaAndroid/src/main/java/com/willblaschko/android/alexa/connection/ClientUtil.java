@@ -77,7 +77,7 @@ public class ClientUtil {
                     return chain.proceed(request);
                 }
             });
-          
+
             mClient = client.build();
         }
         return mClient;
